@@ -2,6 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import myLogo from "./mylogo.gif";
+import { evaluate } from "mathjs";
 
 function App() {
 
@@ -55,8 +56,8 @@ function App() {
 
     try {
 
-      const result = Function('"use strict"; return (' + input + ')')().toString();
-      setInput(result);
+    const result = evaluate(input).toString();  
+    setInput(result);
 
       await axios.post(
         "https://calcify-backend-vk9r.onrender.com/save",
