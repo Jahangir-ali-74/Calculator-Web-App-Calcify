@@ -12,7 +12,7 @@ function App() {
   const getHistory = async () => {
 
     const res = await axios.get(
-      "http://localhost:5000/history"
+      "https://calcify-backend-vk9r.onrender.com/history"
     );
 
     setHistory(res.data);
@@ -38,7 +38,7 @@ function App() {
     try{
 
       await axios.delete(
-        "http://localhost:5000/delete"
+        "https://calcify-backend-vk9r.onrender.com/delete"
       );
 
       setHistory([]);
@@ -55,12 +55,11 @@ function App() {
 
     try {
 
-      const result = eval(input).toString();
-
+      const result = Function('"use strict"; return (' + input + ')')().toString();
       setInput(result);
 
       await axios.post(
-        "http://localhost:5000/save",
+        "https://calcify-backend-vk9r.onrender.com/save",
         {
           expression: input,
           result: result
